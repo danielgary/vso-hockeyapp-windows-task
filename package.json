@@ -1,0 +1,28 @@
+{
+  "name": "vso-hockeyapp-windows-task",
+  "version": "1.0.0",
+  "description": "VSO Build vNext Script for pushing AppX Packages to HockeyApp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielgary/vso-hockeyapp-windows-task"
+  },
+  "keywords": [
+    "vso",
+    "hockeyapp",
+    "windows",
+    "appx",
+    "package",
+    "build",
+    "vnext"
+  ],
+  "author": "Daniel Gary",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielgary/vso-hockeyapp-windows-task/issues"
+  },
+  "homepage": "https://github.com/danielgary/vso-hockeyapp-windows-task"
+}
