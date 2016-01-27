@@ -8,19 +8,19 @@ param(
 $buildSourcesDirectory = Get-TaskVariable -Context $distributedTaskContext -Name "Build.SourcesDirectory"
 
 Write-Host "Changing directory to $($buildSourcesDirectory)"
-SetLocation -Path $buildSourcesDirectory
+Set-Location -Path $buildSourcesDirectory
 
 #Compress output directory
 Add-Type -A System.IO.Compression.FileSystem
 
 
 $path = dir $packageDirectory -Directory | Select-Object -first 1
-Write-Host "Zipping " + "$($packageDirectory)$($path.Name) into upload.zip"
+Write-Host "Zipping " + "$($packageDirectory)$($path.Name) into ./upload.zip"
 
 
 
 
-[IO.Compression.ZipFile]::CreateFromDirectory("$packageDirectory$($path.Name)", "upload.zip")
+[IO.Compression.ZipFile]::CreateFromDirectory("$packageDirectory$($path.Name)", "./upload.zip")
 
 
 $zipFile = dir "./upload.zip" -File | Select-Object -first 1
