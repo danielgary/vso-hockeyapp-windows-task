@@ -1,9 +1,11 @@
 param(
     [string]$appID, # HockeyApp App ID
     [string]$apiToken, #HockeyApp App Token
-    [string]$packageDirectory = "../b/AppxPackages/")
+    [string]$packageDirectory = "../b/AppxPackages/",
+    [string]$buildNumber = $env:BUILD_BUILDNUMBER
+    )
     
- 
+ Write-Host "Build Number: $($buildNumber)"
 
 $buildSourcesDirectory = Get-TaskVariable -Context $distributedTaskContext -Name "Build.SourcesDirectory"
 
@@ -15,15 +17,16 @@ Add-Type -A System.IO.Compression.FileSystem
 
 
 $path = dir $packageDirectory -Directory | Select-Object -first 1
-Write-Host "Zipping " + "$($packageDirectory)$($path.Name) into ./upload.zip"
+$zipPath = "$($buildSourcesDirectory)/upload.zip"
+Write-Host "Zipping " + "$($packageDirectory)$($path.Name) into $($zipPath)"
 
 
 
 
-[IO.Compression.ZipFile]::CreateFromDirectory("$packageDirectory$($path.Name)", "./upload.zip")
+[IO.Compression.ZipFile]::CreateFromDirectory("$packageDirectory$($path.Name)", $zipPath)
 
 
-$zipFile = dir "./upload.zip" -File | Select-Object -first 1
+$zipFile = dir "$($buildSourcesDirectory)/upload.zip" -File | Select-Object -first 1
 
 Write-Host "Zipped file: $($zipFile.name), Size: $($zipFile.length)"
 
@@ -76,8 +79,8 @@ $body = @{
 
 #Upload upload.zip file
 $curlCommand = @'
-curl -F ipa=@upload.zip  -X PUT -F "status=2" -F "notify=1" -H "X-HockeyAppToken: 
+curl -k -F ipa=@upload.zip  -X PUT -F "status=2" -F "notify=1" -H "X-HockeyAppToken: 
 '@ + $apiToken + '" ' + $update_url
 
 
-cmd /c $curlCommand
+$output = (cmd /c $curlCommand 2`>`&1)

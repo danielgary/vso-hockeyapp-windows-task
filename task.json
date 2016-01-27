@@ -2,7 +2,7 @@
     "id": "9ffb7460-6de0-454f-9ee1-f1d98422fbf8",
     "name": "vsoHockeyAppWindowsTask",
     "friendlyName": "VSO HockeyApp Windows Task",
-    "description": "Publish AppX Package to HockeyApp using ZIP file",
+    "description": "Publish AppX Package to HockeyApp 1.0.9",
     "helpMarkDown": "[More Information](https://github.com/danielgary/vso-hockeyapp-windows-task)",
     "category": "Deploy",
     "visibility": [
@@ -12,7 +12,7 @@
     "version": {
         "Major": 1,
         "Minor": 0,
-        "Patch": 5
+        "Patch": 9
     },
     "demands": [],
     "minimumAgentVersion": "1.83.0",
@@ -55,7 +55,7 @@
             "helpMarkDown": "Relative path from repo root of the solution(s) or MSBuild project to zip and upload.  Unless you changed your package output directory, leave this alone."
         }
     ],
-    "instanceNameFormat": "Upload $(packageId) to HockeyApp",
+    "instanceNameFormat": "Upload $(packageId) to HockeyApp 1.0.9",
     "execution": {
         "PowerShell": {
             "target": "$(currentDirectory)\\hockeyapp.ps1",
