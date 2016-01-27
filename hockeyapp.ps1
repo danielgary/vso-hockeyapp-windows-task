@@ -6,7 +6,7 @@ param(
  
 
 $buildSourcesDirectory = Get-TaskVariable -Context $distributedTaskContext -Name "Build.SourcesDirectory"
-$packageDirectory = "$($buildSourcesDirectory)$($packageDirectory)"
+
 
 #Compress output directory
 Add-Type -A System.IO.Compression.FileSystem
@@ -41,7 +41,10 @@ $existingVersion = $versions.app_versions[0]
 $nextVersion = 1
 
 if($existingVersion)
-    $nextVersion = 1 + $existingVersion.version
+{
+     $nextVersion = 1 + $existingVersion.version
+}
+   
 
 $create_url = "https://rink.hockeyapp.net/api/2/apps/$($appID)/app_versions/new"
 

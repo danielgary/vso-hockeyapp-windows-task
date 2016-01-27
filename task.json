@@ -1,7 +1,8 @@
 {
-    "name": "vso-hockeyapp-windows-task",
+    "id": "9ffb7460-6de0-454f-9ee1-f1d98422fbf8",
+    "name": "vsoHockeyAppWindowsTask",
     "friendlyName": "VSO HockeyApp Windows Task",
-    "description": "Publish AppX Package to HockeyApp",
+    "description": "Publish AppX Package to HockeyApp using ZIP file",
     "helpMarkDown": "[More Information](https://github.com/danielgary/vso-hockeyapp-windows-task)",
     "category": "Deploy",
     "visibility": [
@@ -11,7 +12,7 @@
     "version": {
         "Major": 1,
         "Minor": 0,
-        "Patch": 0
+        "Patch": 2
     },
     "demands": [],
     "minimumAgentVersion": "1.83.0",
