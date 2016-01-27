@@ -7,6 +7,8 @@ param(
 
 $buildSourcesDirectory = Get-TaskVariable -Context $distributedTaskContext -Name "Build.SourcesDirectory"
 
+Write-Host "Changing directory to $($buildSourcesDirectory)"
+SetLocation -Path $buildSourcesDirectory
 
 #Compress output directory
 Add-Type -A System.IO.Compression.FileSystem
