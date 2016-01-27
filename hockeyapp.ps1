@@ -84,3 +84,6 @@ curl -k -F ipa=@upload.zip  -X PUT -F "status=2" -F "notify=1" -H "X-HockeyAppTo
 
 
 $output = (cmd /c $curlCommand 2`>`&1)
+
+
+exit 0
