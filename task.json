@@ -1,0 +1,65 @@
+{
+    "name": "vso-hockeyapp-windows-task",
+    "friendlyName": "VSO HockeyApp Windows Task",
+    "description": "Publish AppX Package to HockeyApp",
+    "helpMarkDown": "[More Information](https://github.com/danielgary/vso-hockeyapp-windows-task)",
+    "category": "Deploy",
+    "visibility": [
+        "Deploy"
+    ],
+    "author": "Daniel Gary",
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "demands": [],
+    "minimumAgentVersion": "1.83.0",
+    "groups": [
+        {
+            "name": "hockeyAppOptions",
+            "displayName": "HockeyApp Options",
+            "isExpanded": true
+        }
+    ],
+    "inputs": [
+        {
+            "name": "appID",
+            "type": "string",
+            "label": "HockeyApp App ID",
+            "defaultValue": "",
+            "required": true,
+          
+            "helpMarkDown": "The App ID.  You can get this from HockeyApp",
+      
+            "groupName": "hockeyAppOptions"
+        },
+                {
+            "name": "apiToken",
+            "type": "string",
+            "label": "HockeyApp API Token",
+            "defaultValue": "",
+            "required": true,
+          
+            "helpMarkDown": "A valid HockeyApp API token.",
+      
+            "groupName": "hockeyAppOptions"
+        },
+        {
+            "name": "packageDirectory",
+            "type": "filePath",
+            "label": "Package Parent Directory",
+            "defaultValue": "../b/AppxPackages/",
+            "required": true,
+            "helpMarkDown": "Relative path from repo root of the solution(s) or MSBuild project to zip and upload.  Unless you changed your package output directory, leave this alone."
+        }
+    ],
+    "instanceNameFormat": "Upload $(packageId) to HockeyApp",
+    "execution": {
+        "PowerShell": {
+            "target": "$(currentDirectory)\\hockeyapp.ps1",
+            "argumentFormat": "",
+            "workingDirectory": "$(currentDirectory)"
+        }
+    }
+}
